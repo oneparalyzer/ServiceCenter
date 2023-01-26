@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace oneparalyzer.ServiceCenter.Domain.Entities
 {
-    internal class Role
+    public class Role
     {
+        public int Id { get; set; }
+        public string Title { get; private set; }
+        public List<User> Users { get; set; }
+
+        public Role(string title)
+        {
+            Title = title;
+        }
     }
 }

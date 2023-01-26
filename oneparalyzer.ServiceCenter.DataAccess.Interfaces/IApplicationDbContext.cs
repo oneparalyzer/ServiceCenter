@@ -10,6 +10,8 @@ namespace oneparalyzer.ServiceCenter.DataAccess.Interfaces
         DbSet<Service> Services { get; set; }
         DbSet<Spare> Spares { get; set; }
         DbSet<SpareOrder> SparesOrders { get; set; }
+        DbSet<User> Users { get; set; }
+        DbSet<Role> Roles { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

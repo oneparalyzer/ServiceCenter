@@ -10,7 +10,7 @@ namespace oneparalyzer.ServiceCenter.DataAccess.Implementations
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            
         }
 
         public DbSet<Client> Clients { get; set; }
@@ -18,6 +18,8 @@ namespace oneparalyzer.ServiceCenter.DataAccess.Implementations
         public DbSet<Service> Services { get; set; }
         public DbSet<Spare> Spares { get; set; }
         public DbSet<SpareOrder> SparesOrders { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
