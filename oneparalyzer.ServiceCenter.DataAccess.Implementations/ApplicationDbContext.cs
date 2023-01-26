@@ -26,6 +26,8 @@ namespace oneparalyzer.ServiceCenter.DataAccess.Implementations
             modelBuilder.ApplyConfiguration(new ServiceConfiguration());
             modelBuilder.ApplyConfiguration(new SpareConfiguration());
             modelBuilder.ApplyConfiguration(new SpareOrderConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

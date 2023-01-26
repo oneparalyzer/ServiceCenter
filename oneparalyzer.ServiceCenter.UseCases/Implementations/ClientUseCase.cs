@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using oneparalyzer.ServiceCenter.DataAccess.Interfaces;
+using oneparalyzer.ServiceCenter.Domain.Entities;
+using oneparalyzer.ServiceCenter.Domain.Exceptions;
 using oneparalyzer.ServiceCenter.UseCases.DTOs.Client;
 using oneparalyzer.ServiceCenter.UseCases.Interfaces;
 
@@ -16,24 +19,58 @@ namespace oneparalyzer.ServiceCenter.UseCases.Implementations
             _mapper = mapper;
         }
 
-        public Task AddAsync(AddClientDTO clientDTO)
+        public async Task AddAsync(AddClientDTO clientDTO)
         {
-            throw new NotImplementedException();
+            Client client;
+
+            if (clientDTO.Email == null)
+            {
+                client = await _context.Clients.FirstOrDefaultAsync(x =>
+                    x.PhoneNumber == clientDTO.PhoneNumber);
+            }
+            else
+            {
+                client = await _context.Clients.FirstOrDefaultAsync(x =>
+                    x.PhoneNumber == clientDTO.PhoneNumber || x.Email == clientDTO.Email);
+            }
+
+            if (client != null)
+            {
+                throw new EntityAlreadyExistsException($"Entity 'Client' where 'PhoneNumber' = {clientDTO.PhoneNumber} or 'Email' = {clientDTO.Email} already exist");
+            }
+
+            client = _mapper.Map<Client>(clientDTO);
+            await _context.Clients.AddAsync(client);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<GetClientDTO> GetAll()
         {
-            throw new NotImplementedException();
+            var clients = _context.Clients;
+            var clientsDTO = _mapper.Map<IEnumerable<GetClientDTO>>(clients);
+            return clientsDTO;
         }
 
-        public Task RemoveAsync(RemoveClientDTO clientDTO)
+        public async Task RemoveAsync(RemoveClientDTO clientDTO)
         {
-            throw new NotImplementedException();
+            var client = await _context.Clients.FirstOrDefaultAsync(x => x.Id == clientDTO.Id);
+            if (client == null)
+            {
+                throw new EntityNotFoundException($"Entity 'Client' where 'Id' = {clientDTO.Id} not found");
+            }
+            _context.Clients.Remove(client);
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(UpdateClientDTO clientDTO)
+        public async Task UpdateAsync(UpdateClientDTO clientDTO)
         {
-            throw new NotImplementedException();
+            var client = await _context.Clients.FirstOrDefaultAsync(x => x.Id == clientDTO.Id);
+            if (client == null)
+            {
+                throw new EntityNotFoundException($"Entity 'Client' where 'Id' = {clientDTO.Id} not found");
+            }
+            _context.Clients.Update(client);
+            await _context.SaveChangesAsync();
         }
     }
 }
