@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\oneparalyzer.ServiceCenter.DataAccess.Implementations\oneparalyzer.ServiceCenter.DataAccess.Implementations.csproj" />
+    <ProjectReference Include="..\oneparalyzer.ServiceCenter.UseCases\oneparalyzer.ServiceCenter.UseCases.csproj" />
+  </ItemGroup>
+
+</Project>

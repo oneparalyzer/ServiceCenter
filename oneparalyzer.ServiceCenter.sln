@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 Utils", "0 Utils", "{235FEE1E-598A-4926-A834-F71805F15BF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Entities", "1 Entities", "{8C260C23-D27F-4012-AA2C-5B969313378F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 Infrastructure.Interfaces", "2 Infrastructure.Interfaces", "{C977BBC2-B671-4267-977F-867C28D1B0E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 UseCases", "3 UseCases", "{7DA5AB28-0D1C-43C5-B8E0-2E7B38A0B39A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 Infrastructure.Implementations", "4 Infrastructure.Implementations", "{112F7797-C7DA-4690-9BF4-7E8B33517131}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 UI", "5 UI", "{E40945D6-BE6E-4B96-B241-D34D8088D086}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.Utils", "oneparalyzer.ServiceCenter.Utils\oneparalyzer.ServiceCenter.Utils.csproj", "{694C12DB-BBED-4718-A0EE-E861574EC2D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.Domain", "oneparalyzer.ServiceCenter.Domain\oneparalyzer.ServiceCenter.Domain.csproj", "{261527CC-5133-4C98-A55C-857F238D031F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.UI.Console", "oneparalyzer.ServiceCenter.UI.Console\oneparalyzer.ServiceCenter.UI.Console.csproj", "{AEDD3C57-F887-45F1-A340-03F49F0EE57B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.DataAccess.Interfaces", "oneparalyzer.ServiceCenter.DataAccess.Interfaces\oneparalyzer.ServiceCenter.DataAccess.Interfaces.csproj", "{8109ABBF-D02C-4587-B7D9-C57214F155EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.DataAccess.Implementations", "oneparalyzer.ServiceCenter.DataAccess.Implementations\oneparalyzer.ServiceCenter.DataAccess.Implementations.csproj", "{96CC1DC0-385E-40B1-9534-2138F4B5D48B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "oneparalyzer.ServiceCenter.UseCases", "oneparalyzer.ServiceCenter.UseCases\oneparalyzer.ServiceCenter.UseCases.csproj", "{9A8F035A-04D1-4B88-A0C9-03A3E52B5D9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "oneparalyzer.ServiceCenter.MVC", "oneparalyzer.ServiceCenter.MVC\oneparalyzer.ServiceCenter.MVC.csproj", "{608EB168-0D03-4A00-BE05-C208BD715992}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{694C12DB-BBED-4718-A0EE-E861574EC2D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{694C12DB-BBED-4718-A0EE-E861574EC2D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{694C12DB-BBED-4718-A0EE-E861574EC2D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{694C12DB-BBED-4718-A0EE-E861574EC2D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{261527CC-5133-4C98-A55C-857F238D031F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{261527CC-5133-4C98-A55C-857F238D031F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{261527CC-5133-4C98-A55C-857F238D031F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{261527CC-5133-4C98-A55C-857F238D031F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEDD3C57-F887-45F1-A340-03F49F0EE57B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEDD3C57-F887-45F1-A340-03F49F0EE57B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEDD3C57-F887-45F1-A340-03F49F0EE57B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEDD3C57-F887-45F1-A340-03F49F0EE57B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8109ABBF-D02C-4587-B7D9-C57214F155EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8109ABBF-D02C-4587-B7D9-C57214F155EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8109ABBF-D02C-4587-B7D9-C57214F155EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8109ABBF-D02C-4587-B7D9-C57214F155EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96CC1DC0-385E-40B1-9534-2138F4B5D48B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96CC1DC0-385E-40B1-9534-2138F4B5D48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96CC1DC0-385E-40B1-9534-2138F4B5D48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96CC1DC0-385E-40B1-9534-2138F4B5D48B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A8F035A-04D1-4B88-A0C9-03A3E52B5D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A8F035A-04D1-4B88-A0C9-03A3E52B5D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A8F035A-04D1-4B88-A0C9-03A3E52B5D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A8F035A-04D1-4B88-A0C9-03A3E52B5D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{608EB168-0D03-4A00-BE05-C208BD715992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{608EB168-0D03-4A00-BE05-C208BD715992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{608EB168-0D03-4A00-BE05-C208BD715992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{608EB168-0D03-4A00-BE05-C208BD715992}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{694C12DB-BBED-4718-A0EE-E861574EC2D1} = {235FEE1E-598A-4926-A834-F71805F15BF6}
+		{261527CC-5133-4C98-A55C-857F238D031F} = {8C260C23-D27F-4012-AA2C-5B969313378F}
+		{AEDD3C57-F887-45F1-A340-03F49F0EE57B} = {E40945D6-BE6E-4B96-B241-D34D8088D086}
+		{8109ABBF-D02C-4587-B7D9-C57214F155EF} = {C977BBC2-B671-4267-977F-867C28D1B0E3}
+		{96CC1DC0-385E-40B1-9534-2138F4B5D48B} = {112F7797-C7DA-4690-9BF4-7E8B33517131}
+		{9A8F035A-04D1-4B88-A0C9-03A3E52B5D9D} = {7DA5AB28-0D1C-43C5-B8E0-2E7B38A0B39A}
+		{608EB168-0D03-4A00-BE05-C208BD715992} = {E40945D6-BE6E-4B96-B241-D34D8088D086}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD723F00-E37F-4590-84D8-AC2E5BA4FCCE}
+	EndGlobalSection
+EndGlobal
