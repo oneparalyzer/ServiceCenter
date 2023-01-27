@@ -133,7 +133,7 @@ namespace oneparalyzer.ServiceCenter.UseCases.Implementations
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(UpdateOrderDTO orderDTO)
+        public Task UpdateAsync(UpdateOrderDTO orderDTO)
         {
             throw new NotImplementedException();
         }

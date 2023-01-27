@@ -1,5 +1,7 @@
 ﻿@model ServiceVM
 
+<p class="text-center fs-1">Услуги</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -10,14 +12,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var service in Model.GetServicesDTO)
+        @foreach (var service in Model.GetServicesVM)
         {
             <tr>
                 <td>@service.Title</td>
                 <td>@service.Price</td>
                 <td>
                     <form method="post" asp-controller="Service" asp-action="Remove">
-                        <input type="hidden" value="@service.Id" asp-for="RemoveServiceDTO.Id"/>
+                        <input type="hidden" value="@service.Id" asp-for="RemoveServiceVM.Id"/>
                         <button type="submit" class="btn btn-danger">Удалить</button>
                     </form>
                 </td>

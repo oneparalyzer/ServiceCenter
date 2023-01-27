@@ -4,6 +4,7 @@ using oneparalyzer.ServiceCenter.UseCases.DTOs.Client;
 using oneparalyzer.ServiceCenter.UseCases.DTOs.Service;
 using oneparalyzer.ServiceCenter.UseCases.DTOs.Spare;
 
+
 namespace oneparalyzer.ServiceCenter.UseCases.Mapping
 {
     public class MappingConfiguration : Profile

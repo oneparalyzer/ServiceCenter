@@ -1,0 +1,42 @@
+﻿@model SpareVM
+
+<p class="text-center fs-1">Комплектующие</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Услуга</th>
+            <th scope="col">Тип устройства</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Колличество</th>
+            <th scope="col">Удалить</th>
+            <th scope="col">Обновить</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var spare in Model.GetSparesVM)
+        {
+            <tr>
+                <td>@spare.Title</td>
+                <td>@spare.Device</td>
+                <td>@spare.Details</td>
+                <td>@spare.Price</td>
+                <td>@spare.Quantity</td>
+                <td>
+                    <form method="post" asp-controller="Spare" asp-action="Remove">
+                        <input type="hidden" value="@spare.Id" asp-for="RemoveSpareVM.Id"/>
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-controller="Spare" asp-action="Update">
+                        <input type="hidden" value="@spare.Id" />
+                        <button type="submit" class="btn btn-warning">Обновить</button>
+                    </form>
+                </td>
+            </tr>
+        }       
+    </tbody>
+</table>
+

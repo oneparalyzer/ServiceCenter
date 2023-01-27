@@ -1,0 +1,36 @@
+﻿@model SpareVM
+
+<p class="text-center fs-1">Добавить услугу</p>
+
+<form method="post"asp-controller="Spare" asp-action="Add">
+    <div class="form-group">
+        <label>Укажите название комплектующиего</label>
+        <input type="text" class="form-control" asp-for="AddSpareVM.Title">
+        <span asp-validation-for="AddSpareVM.Title"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Укажите название устройства</label>
+        <input type="text" class="form-control" asp-for="AddSpareVM.Device">
+        <span asp-validation-for="AddSpareVM.Device"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Укажите описание</label>
+        <input type="text" class="form-control" asp-for="AddSpareVM.Details">
+    </div>
+
+    <div class="form-group">
+        <label>Укажите цену</label>
+        <input type="number" class="form-control" asp-for="AddSpareVM.Price">
+        <span asp-validation-for="AddSpareVM.Price"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Укажите колличество комплектующих</label>
+        <input type="number" class="form-control" asp-for="AddSpareVM.Quantity">
+        <span asp-validation-for="AddSpareVM.Quantity"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>

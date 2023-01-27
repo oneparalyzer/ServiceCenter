@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using oneparalyzer.ServiceCenter.MVC.Models.Service;
 using oneparalyzer.ServiceCenter.MVC.ViewModels;
+using oneparalyzer.ServiceCenter.UseCases.DTOs.Service;
 using oneparalyzer.ServiceCenter.UseCases.Interfaces;
 
 namespace oneparalyzer.ServiceCenter.MVC.Controllers
@@ -17,7 +19,7 @@ namespace oneparalyzer.ServiceCenter.MVC.Controllers
         public IActionResult GetAll()
         {
             var serviceVM = new ServiceVM();
-            serviceVM.GetServicesDTO = _serviceUseCase.GetAll();
+            serviceVM.GetServicesVM = ConvertToListServicesVM(_serviceUseCase.GetAll());
             return View(serviceVM);
         }
 
@@ -30,17 +32,47 @@ namespace oneparalyzer.ServiceCenter.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ServiceVM serviceVM)
         {
-            await _serviceUseCase.AddAsync(serviceVM.AddServiceDTO);
-            ModelState.Clear();
+            if (ModelState.IsValid)
+            {
+                var serviceDTO = new AddServiceDTO
+                {
+                    Price = serviceVM.AddServiceVM.Price,
+                    Title = serviceVM.AddServiceVM.Title
+                };
+                await _serviceUseCase.AddAsync(serviceDTO);
+                ModelState.Clear();
+            }
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Remove(ServiceVM serviceVM)
         {
-            await _serviceUseCase.RemoveAsync(serviceVM.RemoveServiceDTO);
-            serviceVM.GetServicesDTO = _serviceUseCase.GetAll();
+            var removeServiceDTO = new RemoveServiceDTO
+            {
+                Id = serviceVM.RemoveServiceVM.Id
+            };
+            await _serviceUseCase.RemoveAsync(removeServiceDTO);
+            serviceVM.GetServicesVM = ConvertToListServicesVM(_serviceUseCase.GetAll());
             return View("GetAll", serviceVM);
+        }
+
+        private IEnumerable<GetServiceVM> ConvertToListServicesVM(IEnumerable<GetServiceDTO> servicesDTO)
+        {
+            var servicesVM = new List<GetServiceVM>();
+            
+
+            foreach (var serviceDTO in servicesDTO)
+            {
+                var serviceVM = new GetServiceVM
+                {
+                    Id = serviceDTO.Id,
+                    Title = serviceDTO.Title,
+                    Price = serviceDTO.Price
+                };
+                servicesVM.Add(serviceVM);
+            }
+            return servicesVM;
         }
 
 
