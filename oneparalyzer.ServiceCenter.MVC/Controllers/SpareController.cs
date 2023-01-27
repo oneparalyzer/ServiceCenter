@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using oneparalyzer.ServiceCenter.Domain.Entities;
-using oneparalyzer.ServiceCenter.MVC.Models.Spare;
 using oneparalyzer.ServiceCenter.MVC.ViewModels;
-using oneparalyzer.ServiceCenter.UseCases.DTOs.Service;
 using oneparalyzer.ServiceCenter.UseCases.DTOs.Spare;
-using oneparalyzer.ServiceCenter.UseCases.Implementations;
 using oneparalyzer.ServiceCenter.UseCases.Interfaces;
 
 namespace oneparalyzer.ServiceCenter.MVC.Controllers
@@ -22,7 +18,7 @@ namespace oneparalyzer.ServiceCenter.MVC.Controllers
         public IActionResult GetAll()
         {
             var spareVM = new SpareVM();
-            spareVM.GetSparesVM = ConvertToListSparesVM(_spareUseCase.GetAll());
+            spareVM.GetSparesDTO = _spareUseCase.GetAll();
             return View(spareVM);
         }
 
@@ -35,40 +31,21 @@ namespace oneparalyzer.ServiceCenter.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(SpareVM spareVM)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var spareDTO = new AddSpareDTO
+                if (ModelState.IsValid)
                 {
-                    Price = spareVM.AddSpareVM.Price,
-                    Title = spareVM.AddSpareVM.Title,
-                    Details = spareVM.AddSpareVM.Details,
-                    Device = spareVM.AddSpareVM.Device,
-                    Quantity = spareVM.AddSpareVM.Quantity
-                };
-                await _spareUseCase.AddAsync(spareDTO);
-                ModelState.Clear();
+                    AddSpareDTO spareDTO = spareVM.AddSpareDTO;
+                    await _spareUseCase.AddAsync(spareDTO);
+                    ModelState.Clear();
+                }
+                return View(spareVM);
             }
-            return View();
-        }
-
-        private IEnumerable<GetSpareVM> ConvertToListSparesVM(IEnumerable<GetSpareDTO> sparesDTO)
-        {
-            var sparesVM = new List<GetSpareVM>();
-
-            foreach (var spareDTO in sparesDTO)
+            catch (Exception ex)
             {
-                var spareVM = new GetSpareVM
-                {
-                    Id= spareDTO.Id,
-                    Details= spareDTO.Details,
-                    Device = spareDTO.Device,
-                    Price = spareDTO.Price,
-                    Quantity = spareDTO.Quantity,
-                    Title = spareDTO.Title
-                };
-                sparesVM.Add(spareVM);
+                return View("Error", ex.Message);
             }
-            return sparesVM;
+            
         }
     }
 }

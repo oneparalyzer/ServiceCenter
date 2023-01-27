@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using oneparalyzer.ServiceCenter.MVC.Models.Service;
 using oneparalyzer.ServiceCenter.MVC.ViewModels;
 using oneparalyzer.ServiceCenter.UseCases.DTOs.Service;
 using oneparalyzer.ServiceCenter.UseCases.Interfaces;
@@ -19,7 +18,7 @@ namespace oneparalyzer.ServiceCenter.MVC.Controllers
         public IActionResult GetAll()
         {
             var serviceVM = new ServiceVM();
-            serviceVM.GetServicesVM = ConvertToListServicesVM(_serviceUseCase.GetAll());
+            serviceVM.GetServicesDTO = _serviceUseCase.GetAll();
             return View(serviceVM);
         }
 
@@ -32,49 +31,30 @@ namespace oneparalyzer.ServiceCenter.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ServiceVM serviceVM)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var serviceDTO = new AddServiceDTO
+                if (ModelState.IsValid)
                 {
-                    Price = serviceVM.AddServiceVM.Price,
-                    Title = serviceVM.AddServiceVM.Title
-                };
-                await _serviceUseCase.AddAsync(serviceDTO);
-                ModelState.Clear();
+                    AddServiceDTO serviceDTO = serviceVM.AddServiceDTO;
+                    await _serviceUseCase.AddAsync(serviceDTO);
+                    ModelState.Clear();
+                }
+                return View(serviceVM);
             }
-            return View();
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
+            
         }
 
         [HttpPost]
         public async Task<IActionResult> Remove(ServiceVM serviceVM)
         {
-            var removeServiceDTO = new RemoveServiceDTO
-            {
-                Id = serviceVM.RemoveServiceVM.Id
-            };
-            await _serviceUseCase.RemoveAsync(removeServiceDTO);
-            serviceVM.GetServicesVM = ConvertToListServicesVM(_serviceUseCase.GetAll());
+            RemoveServiceDTO serviceDTO = serviceVM.RemoveServiceDTO;
+            await _serviceUseCase.RemoveAsync(serviceDTO);
+            serviceVM.GetServicesDTO = _serviceUseCase.GetAll();
             return View("GetAll", serviceVM);
         }
-
-        private IEnumerable<GetServiceVM> ConvertToListServicesVM(IEnumerable<GetServiceDTO> servicesDTO)
-        {
-            var servicesVM = new List<GetServiceVM>();
-            
-
-            foreach (var serviceDTO in servicesDTO)
-            {
-                var serviceVM = new GetServiceVM
-                {
-                    Id = serviceDTO.Id,
-                    Title = serviceDTO.Title,
-                    Price = serviceDTO.Price
-                };
-                servicesVM.Add(serviceVM);
-            }
-            return servicesVM;
-        }
-
-
     }
 }

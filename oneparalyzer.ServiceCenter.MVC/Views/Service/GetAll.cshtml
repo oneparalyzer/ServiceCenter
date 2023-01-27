@@ -12,14 +12,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var service in Model.GetServicesVM)
+        @foreach (var service in Model.GetServicesDTO)
         {
             <tr>
                 <td>@service.Title</td>
                 <td>@service.Price</td>
                 <td>
                     <form method="post" asp-controller="Service" asp-action="Remove">
-                        <input type="hidden" value="@service.Id" asp-for="RemoveServiceVM.Id"/>
+                        <input type="hidden" value="@service.Id" asp-for="RemoveServiceDTO.Id"/>
                         <button type="submit" class="btn btn-danger">Удалить</button>
                     </form>
                 </td>
