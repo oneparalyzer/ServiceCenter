@@ -1,0 +1,17 @@
+﻿@model ServiceVM
+
+<p class="text-center fs-1">Обновить услугу</p>
+
+<form method="post" asp-controller="Service" asp-action="Update">
+    <div class="form-group">
+        <label>Укажите название услуги</label>
+        <input type="text" class="form-control" asp-for="UpdateServiceDTO.Title">
+        <span asp-validation-for="UpdateServiceDTO.Title"></span>
+    </div>
+    <div class="form-group">
+        <label >Укажите стоимость услуги</label>
+        <input type="number" class="form-control" asp-for="UpdateServiceDTO.Price">
+        <span asp-validation-for="UpdateServiceDTO.Price"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Обновить</button>
+</form>

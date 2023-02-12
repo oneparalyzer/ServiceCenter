@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using oneparalyzer.ServiceCenter.DataAccess.Interfaces;
 using oneparalyzer.ServiceCenter.Domain.Entities;
+using oneparalyzer.ServiceCenter.Domain.Enums;
 using oneparalyzer.ServiceCenter.Domain.Exceptions;
 using oneparalyzer.ServiceCenter.UseCases.DTOs.Order;
 using oneparalyzer.ServiceCenter.UseCases.DTOs.Service;
@@ -48,41 +49,15 @@ namespace oneparalyzer.ServiceCenter.UseCases.Implementations
         public IEnumerable<GetOrderDTO> GetAll()
         {
             var orders = _context.Orders;
-            var ordersDTO = new List<GetOrderDTO>();
-            var orderDTO = new GetOrderDTO();
-            var serviceDTO = new GetServiceDTO();
-            var spareDTO = new GetSpareDTO();
+            var ordersDTO = ConvertToListOrderDTO(orders);
+            return ordersDTO;
+        }
 
-            foreach (var order in orders)
-            {
-                orderDTO.Id = order.Id;
-                orderDTO.Client.FirstName = order.Client.FirstName;
-                orderDTO.Client.FirstName = order.Client.LastName;
-                orderDTO.Client.FirstName = order.Client.Surname;
-                orderDTO.Client.FirstName = order.Client.Email;
-                orderDTO.Client.FirstName = order.Client.PhoneNumber;
-
-                foreach (var service in orderDTO.Services)
-                {
-                    serviceDTO.Id = service.Id;
-                    serviceDTO.Price = service.Price;
-                    serviceDTO.Title = service.Title;
-                }
-
-                if (orderDTO.Spares != null)
-                {
-                    foreach (var spare in orderDTO.Spares)
-                    {
-                        spareDTO.Id = spare.Id;
-                        spareDTO.Price = spare.Price;
-                        spareDTO.Device = spare.Device;
-                        spareDTO.Quantity = spare.Quantity;
-                        spareDTO.Details = spare.Details;
-                        spareDTO.Title = spare.Title;
-                    }
-                }
-                ordersDTO.Add(orderDTO);
-            }
+        public IEnumerable<GetOrderDTO> GetAllActual()
+        {
+            var orders = _context.Orders.Where(x => 
+                x.Status != OrderStatus.MoneyRefund || x.Status != OrderStatus.Confirm);
+            var ordersDTO = ConvertToListOrderDTO(orders);
             return ordersDTO;
         }
 
@@ -136,6 +111,46 @@ namespace oneparalyzer.ServiceCenter.UseCases.Implementations
         public Task UpdateAsync(UpdateOrderDTO orderDTO)
         {
             throw new NotImplementedException();
+        }
+
+        private IEnumerable<GetOrderDTO> ConvertToListOrderDTO(IEnumerable<Order> orders)
+        {
+            var ordersDTO = new List<GetOrderDTO>();
+            var orderDTO = new GetOrderDTO();
+            var serviceDTO = new GetServiceDTO();
+            var spareDTO = new GetSpareDTO();
+
+            foreach (var order in orders)
+            {
+                orderDTO.Id = order.Id;
+                orderDTO.Client.FirstName = order.Client.FirstName;
+                orderDTO.Client.FirstName = order.Client.LastName;
+                orderDTO.Client.FirstName = order.Client.Surname;
+                orderDTO.Client.FirstName = order.Client.Email;
+                orderDTO.Client.FirstName = order.Client.PhoneNumber;
+
+                foreach (var service in orderDTO.Services)
+                {
+                    serviceDTO.Id = service.Id;
+                    serviceDTO.Price = service.Price;
+                    serviceDTO.Title = service.Title;
+                }
+
+                if (orderDTO.Spares != null)
+                {
+                    foreach (var spare in orderDTO.Spares)
+                    {
+                        spareDTO.Id = spare.Id;
+                        spareDTO.Price = spare.Price;
+                        spareDTO.Device = spare.Device;
+                        spareDTO.Quantity = spare.Quantity;
+                        spareDTO.Details = spare.Details;
+                        spareDTO.Title = spare.Title;
+                    }
+                }
+                ordersDTO.Add(orderDTO);
+            }
+            return ordersDTO;
         }
     }
 }

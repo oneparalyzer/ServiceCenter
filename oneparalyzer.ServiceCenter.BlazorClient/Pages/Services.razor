@@ -1,0 +1,69 @@
+﻿@page "/Services"
+
+
+<PageTitle>Services</PageTitle>
+
+<h1 class="text-center">Услуги</h1>
+
+<p>Чтобы добавить услугу, нажми
+    <a href="AddService">сюда</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Цена</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (services != null)
+        {
+            @foreach (var service in services)
+            {
+            <tr>
+                <td>@service.Title</td>
+                <td>@service.Price</td>
+                 <td>
+                     <button class="btn btn-danger" @onclick="(() => DeleteService(new RemoveServiceDTO { Id = service.Id }))">X</button>
+                 </td>
+                 <td>
+                     <button class="btn btn-warning">Редактировать</button>
+                 </td>
+            </tr>        
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private AddServiceDTO? addServiceDTO;
+    private IEnumerable<GetServiceDTO>? services;
+    private string? _title;
+    private string? _price;
+
+    private async Task FillServices()
+    {
+        var httpClient = new HttpClient();
+        var client = new Client("https://localhost:7195/", httpClient);
+        services = await client.GetAllServicesAsync();
+        httpClient.Dispose();
+    }
+
+    private async Task DeleteService(RemoveServiceDTO removeService)
+    {
+        var httpClient = new HttpClient();
+        var client = new Client("https://localhost:7195/", httpClient);
+        await client.RemoveServiceAsync(removeService);
+        httpClient.Dispose();
+        await FillServices();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FillServices();
+    }
+}
+

@@ -47,5 +47,14 @@ namespace oneparalyzer.ServiceCenter.MVC.Controllers
             }
             
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Remove(SpareVM spareVM)
+        {
+            var spareDTO = spareVM.RemoveSpareDTO;
+            await _spareUseCase.RemoveAsync(spareDTO);
+            spareVM.GetSparesDTO = _spareUseCase.GetAll();
+            return View("GetAll", spareVM);
+        }
     }
 }

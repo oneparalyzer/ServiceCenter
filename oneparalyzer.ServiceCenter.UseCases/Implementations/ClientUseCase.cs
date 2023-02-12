@@ -23,7 +23,7 @@ namespace oneparalyzer.ServiceCenter.UseCases.Implementations
         {
             Client client;
 
-            if (clientDTO.Email == null)
+            if (string.IsNullOrWhiteSpace(clientDTO.Email))
             {
                 client = await _context.Clients.FirstOrDefaultAsync(x =>
                     x.PhoneNumber == clientDTO.PhoneNumber);

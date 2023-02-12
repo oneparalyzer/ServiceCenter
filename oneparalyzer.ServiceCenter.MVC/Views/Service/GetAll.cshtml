@@ -24,8 +24,8 @@
                     </form>
                 </td>
                 <td>
-                    <form method="post" asp-controller="Service" asp-action="Update">
-                        <input type="hidden" value="@service.Id" />
+                    <form method="get" asp-controller="Service" asp-action="Update">
+                        <input type="hidden" value="@service.Id" asp-for="UpdateServiceDTO.Id"/>
                         <button type="submit" class="btn btn-warning">Обновить</button>
                     </form>
                 </td>

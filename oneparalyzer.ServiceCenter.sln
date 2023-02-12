@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 UseCases", "3 UseCases", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 Infrastructure.Implementations", "4 Infrastructure.Implementations", "{112F7797-C7DA-4690-9BF4-7E8B33517131}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 UI", "5 UI", "{E40945D6-BE6E-4B96-B241-D34D8088D086}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5", "5", "{E40945D6-BE6E-4B96-B241-D34D8088D086}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.Utils", "oneparalyzer.ServiceCenter.Utils\oneparalyzer.ServiceCenter.Utils.csproj", "{694C12DB-BBED-4718-A0EE-E861574EC2D1}"
 EndProject
@@ -26,6 +26,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.UseCases", "oneparalyzer.ServiceCenter.UseCases\oneparalyzer.ServiceCenter.UseCases.csproj", "{9A8F035A-04D1-4B88-A0C9-03A3E52B5D9D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.MVC", "oneparalyzer.ServiceCenter.MVC\oneparalyzer.ServiceCenter.MVC.csproj", "{608EB168-0D03-4A00-BE05-C208BD715992}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.Api", "oneparalyzer.ServiceCenter.Api\oneparalyzer.ServiceCenter.Api.csproj", "{E95D033D-763D-43C0-BB44-6255117F5349}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "oneparalyzer.ServiceCenter.BlazorClient", "oneparalyzer.ServiceCenter.BlazorClient\oneparalyzer.ServiceCenter.BlazorClient.csproj", "{246FC412-291D-464F-8F6D-35AE2FF4F47F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{608EB168-0D03-4A00-BE05-C208BD715992}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{608EB168-0D03-4A00-BE05-C208BD715992}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{608EB168-0D03-4A00-BE05-C208BD715992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E95D033D-763D-43C0-BB44-6255117F5349}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E95D033D-763D-43C0-BB44-6255117F5349}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E95D033D-763D-43C0-BB44-6255117F5349}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E95D033D-763D-43C0-BB44-6255117F5349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{246FC412-291D-464F-8F6D-35AE2FF4F47F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{246FC412-291D-464F-8F6D-35AE2FF4F47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{246FC412-291D-464F-8F6D-35AE2FF4F47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{246FC412-291D-464F-8F6D-35AE2FF4F47F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +80,8 @@ Global
 		{96CC1DC0-385E-40B1-9534-2138F4B5D48B} = {112F7797-C7DA-4690-9BF4-7E8B33517131}
 		{9A8F035A-04D1-4B88-A0C9-03A3E52B5D9D} = {7DA5AB28-0D1C-43C5-B8E0-2E7B38A0B39A}
 		{608EB168-0D03-4A00-BE05-C208BD715992} = {E40945D6-BE6E-4B96-B241-D34D8088D086}
+		{E95D033D-763D-43C0-BB44-6255117F5349} = {E40945D6-BE6E-4B96-B241-D34D8088D086}
+		{246FC412-291D-464F-8F6D-35AE2FF4F47F} = {E40945D6-BE6E-4B96-B241-D34D8088D086}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD723F00-E37F-4590-84D8-AC2E5BA4FCCE}

@@ -32,6 +32,18 @@ namespace oneparalyzer.ServiceCenter.UseCases.Implementations
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddQuantity(AddQuantitySpareDTO spareDTO)
+        {
+            var spare = _context.Spares.FirstOrDefault(x => x.Id == spareDTO.Id);
+            if (spare == null)
+            {
+                throw new EntityNotFoundException($"Entity 'Spare' where 'Id' = {spareDTO.Id} not found");
+            }
+            spare.Add(spareDTO.Quantity);
+            _context.Spares.Update(spare);
+            await _context.SaveChangesAsync();
+        }
+
         public IEnumerable<GetSpareDTO> GetAll()
         {
             var spare = _context.Spares;

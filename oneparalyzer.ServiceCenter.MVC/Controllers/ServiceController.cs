@@ -43,15 +43,15 @@ namespace oneparalyzer.ServiceCenter.MVC.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error", ex.Message);
+                ModelState.AddModelError("", ex.Message);
+                return View(serviceVM);
             }
-            
         }
 
         [HttpPost]
         public async Task<IActionResult> Remove(ServiceVM serviceVM)
         {
-            RemoveServiceDTO serviceDTO = serviceVM.RemoveServiceDTO;
+            var serviceDTO = serviceVM.RemoveServiceDTO;
             await _serviceUseCase.RemoveAsync(serviceDTO);
             serviceVM.GetServicesDTO = _serviceUseCase.GetAll();
             return View("GetAll", serviceVM);

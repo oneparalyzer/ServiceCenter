@@ -1,0 +1,35 @@
+﻿@page "/Orders"
+
+
+<PageTitle>Orders</PageTitle>
+
+<h1 class="text-center">Услуги</h1>
+
+
+@code {
+    private IEnumerable<GetServiceDTO>? services;
+    private string? _title;
+    private string? _price;
+
+    private async Task FillServices()
+    {
+        var httpClient = new HttpClient();
+        var client = new Client("https://localhost:7195/", httpClient);
+        services = await client.GetAllServicesAsync();
+        httpClient.Dispose();
+    }
+
+    private async Task DeleteService(RemoveServiceDTO removeService)
+    {
+        var httpClient = new HttpClient();
+        var client = new Client("https://localhost:7195/", httpClient);
+        await client.RemoveServiceAsync(removeService);
+        httpClient.Dispose();
+        await FillServices();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FillServices();
+    }
+}

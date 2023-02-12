@@ -3,15 +3,19 @@
 <p class="text-center fs-1">Добавить услугу</p>
 
 <form method="post"asp-controller="Service" asp-action="Add">
-  <div class="form-group">
-    <label>Укажите название услуги</label>
-    <input type="text" class="form-control" asp-for="AddServiceDTO.Title">
+    <div class="form-group">
+        <label>Укажите название услуги</label>
+        <input type="text" class="form-control" asp-for="AddServiceDTO.Title">
         <span asp-validation-for="AddServiceDTO.Title"></span>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Укажите стоимость услуги</label>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Укажите стоимость услуги</label>
         <input type="number" class="form-control" asp-for="AddServiceDTO.Price">
         <span asp-validation-for="AddServiceDTO.Price"></span>
-  </div>
-  <button type="submit" class="btn btn-primary">Добавить</button>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
 </form>
+
+
+<button></button>
+

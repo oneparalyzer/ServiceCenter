@@ -1,0 +1,66 @@
+﻿@page "/Spares"
+
+<PageTitle>Spares</PageTitle>
+
+<h1 class="text-center">Комплектующие</h1>
+<p>Чтобы добавить комплектующее, нажми
+    <a href="AddSpare">сюда</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Колличество</th>
+            <th scope="col">Устройство</th>
+            <th scope="col">Детали</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (spares != null)
+        {
+            @foreach (var service in spares)
+            {
+                <tr>
+                    <td>@service.Title</td>
+                    <td>@service.Price</td>
+                    <td>@service.Quantity</td>
+                    <td>@service.Device</td>
+                    <td>@service.Details</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="(() => DeleteSpare(new RemoveSpareDTO { Id = service.Id }))">X</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private AddServiceDTO? addServiceDTO;
+    private IEnumerable<GetSpareDTO>? spares;
+
+
+    private async Task FillSpares()
+    {
+        var httpClient = new HttpClient();
+        var client = new Client("https://localhost:7195/", httpClient);
+        spares = await client.GetAllSpareAsync();
+        httpClient.Dispose();
+        await FillSpares();
+    }
+
+    private async Task DeleteSpare(RemoveSpareDTO removeSpare)
+    {
+        var httpClient = new HttpClient();
+        var client = new Client("https://localhost:7195/", httpClient);
+        await client.RemoveSpareAsync(removeSpare);
+        httpClient.Dispose();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FillSpares();
+    }
+}

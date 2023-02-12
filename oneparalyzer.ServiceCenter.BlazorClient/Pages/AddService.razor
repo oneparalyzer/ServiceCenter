@@ -1,0 +1,54 @@
+﻿@page "/AddService"
+
+<PageTitle>AddService</PageTitle>
+
+<h1 class="text-center">Добавить услугу</h1>
+
+<EditForm Model="service" OnSubmit="AddNewService">
+    <div class="form-group">
+        <label>Введите название услуги</label>
+        <InputText class="form-control" @bind-Value="service.Title"></InputText>
+    </div>
+
+    <div class ="form-group">
+        <label>Введите стоимомть услуги</label>
+        <InputText class="form-control" @bind-Value="service.Price"></InputText>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</EditForm>
+
+
+
+
+
+
+@code {
+
+
+    public class ServiceModel
+    {
+        public string? Title { get; set; }
+        public string? Price { get; set; }
+    }
+
+    ServiceModel service = new ServiceModel();
+
+    private async Task AddNewService()
+    {
+
+        var httpClient = new HttpClient();
+        var client = new Client("https://localhost:7195/", httpClient);
+
+        await client.AddServiceAsync(new AddServiceDTO
+            {
+                Price = Convert.ToDecimal(service.Price),
+                Title = service.Title
+            });
+        httpClient.Dispose();
+
+        service.Title = string.Empty;
+        service.Price = string.Empty;
+    }
+
+    
+}

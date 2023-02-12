@@ -7,6 +7,9 @@ namespace oneparalyzer.ServiceCenter.Domain.Enums
         [Description("В процессе")]
         InProgress,
 
+        [Description("Выполнено (утверждено)")]
+        Confirm,
+
         [Description("Выполнено")]
         Success,
 
